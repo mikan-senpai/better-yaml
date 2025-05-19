@@ -1,0 +1,132 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom styles */
+@layer base {
+  body {
+    @apply antialiased text-gray-900;
+  }
+}
+
+@layer utilities {
+  .animate-fadeIn {
+    animation: fadeIn 0.3s ease-in-out;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(5px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+/* Transition effects */
+input, textarea, select, button {
+  transition-property: box-shadow, border-color, background-color;
+  transition-duration: 0.15s;
+  transition-timing-function: ease-in-out;
+}
+
+/* Form focus animations */
+input:focus, textarea:focus, select:focus {
+  @apply ring-2 ring-blue-200 ring-opacity-50;
+  animation: pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.1);
+  }
+  50% {
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.2);
+  }
+}
+
+/* Card hover effects */
+.hover\:shadow-md {
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.hover\:shadow-md:hover {
+  transform: translateY(-1px);
+}
+
+/* Button hover effects */
+button:not(:disabled) {
+  transition: transform 0.1s ease, background-color 0.2s ease;
+}
+
+button:not(:disabled):active {
+  transform: scale(0.98);
+}
+
+/* Custom scrollbar */
+.overflow-y-auto {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(156, 163, 175, 0.5) transparent;
+}
+
+.overflow-y-auto::-webkit-scrollbar {
+  width: 6px;
+}
+
+.overflow-y-auto::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.overflow-y-auto::-webkit-scrollbar-thumb {
+  background-color: rgba(156, 163, 175, 0.5);
+  border-radius: 3px;
+}
+
+/* Sticky header shadow */
+.sticky.top-0::after {
+  content: '';
+  position: absolute;
+  bottom: -20px;
+  left: 0;
+  right: 0;
+  height: 20px;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* YAML line hover effect */
+.yaml-line {
+  transition: background-color 0.2s ease;
+}
+
+.yaml-line:hover {
+  background-color: rgba(59, 130, 246, 0.05);
+}
+
+/* Resizable panel styles */
+.divider-handle {
+  position: relative;
+  cursor: col-resize;
+  transition: background-color 0.2s ease;
+}
+
+.divider-handle::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 2px;
+  height: 2rem;
+  background-color: currentColor;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.divider-handle:hover::before {
+  opacity: 0.5;
+}
